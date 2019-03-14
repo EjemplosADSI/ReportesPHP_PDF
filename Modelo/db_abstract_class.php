@@ -15,6 +15,7 @@ abstract class db_abstract_class {
     private $host = "localhost";
     private $driver = "mysql";
     private $dbname = "libros";
+    private $port = "3306";
 
     # métodos abstractos para ABM de clases que hereden
     abstract protected static function buscarForId($id);
@@ -29,7 +30,7 @@ abstract class db_abstract_class {
         try {
             $this->datab = new PDO(
                 ($this->driver != "sqlsrv") ? 
-                    "$this->driver:host={$this->host};dbname={$this->dbname};charset=utf8" : 
+                    "$this->driver:host={$this->host};port={$this->port};dbname={$this->dbname};charset=utf8" :
                     "$this->driver:Server=$this->host;Database=$this->dbname", 
                 $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
             );
